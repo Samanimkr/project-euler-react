@@ -11,9 +11,9 @@ import {
 class ProblemComponent extends React.Component {
     constructor(props){
         super(props);
-
+   
         this.state = {
-            inputText: ''
+            inputText: 0
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -26,11 +26,15 @@ class ProblemComponent extends React.Component {
 
     handleSubmit(event){
         event.preventDefault();
+
+        let answer;
         if (this.props.hasInputField) {
-            this.props.solution(this.state.inputText);
+            answer = this.props.solution(this.state.inputText);
         } else {
-            this.props.solution();
+            answer = this.props.solution();
         }
+
+        this.props.onAnswer(answer);
     }
 
     render(){
@@ -61,8 +65,8 @@ const styles = {
     container: {
         backgroundColor: '#EFF3F4',
         padding: '20px',
-        width: '55%',
-        margin: '10px auto',
+        width: '60%',
+        margin: '20px auto',
     }
 }
 

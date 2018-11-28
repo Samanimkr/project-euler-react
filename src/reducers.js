@@ -21,7 +21,15 @@ const reducer = (state = initState, action) => {
             ...state,
             logs: newLogs
         }
+    } else if (action.type === 'SOLVE_PROBLEM_DONE') {
+        const newLogs = [...state.logs];
+        newLogs.push(action.answer);
+        return {
+            ...state,
+            logs: newLogs
+        }
     }
+
     return state;
 }
 

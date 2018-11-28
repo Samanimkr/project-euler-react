@@ -6,13 +6,7 @@ import {
 } from 'react-bootstrap';
 
 class ConsoleComponent extends React.Component {
-    // componentWillReceiveProps(prevProps, newProps) {
-    //     this.props.isCalculating('FALSE');
-    // }
     render(){
-        console.log('isCalculating: ', this.props.isCalculating);
-        console.log('logs: ', this.props.logs);
-
         return (
             <div style={styles.container}>
                 <h3 style={styles.header}>Console</h3>
@@ -32,7 +26,7 @@ class ConsoleComponent extends React.Component {
 
 const styles = {
     container: {
-        backgroundColor: '#222f3e',
+        backgroundColor: '#222f35',
         padding: '5px',
         width: '30%',
         height: '100%',
@@ -41,13 +35,13 @@ const styles = {
         top: 0,
     },
     header: {
-        color: '#727f8e',
+        color: '#828f95',
         margin: '5px 0',
         paddingBottom: '5px',
-        borderBottom: '3px solid #263343'
+        borderBottom: '3px solid #26333a'
     },
     log: {
-        color: '#a2afbe',
+        color: '#a2afb5',
         fontSize: '18px',
         margin: '2px',
         position: 'relative',
@@ -72,9 +66,6 @@ const mapStateToProps = (state, ownProps) => {
 
   const mapDispatchToProps = (dispatch) => {
     return {
-        isCalculatingAction: (state) => dispatch({
-            type: `IS_CALCULATING_${state}`
-        }),
     }
 }
 

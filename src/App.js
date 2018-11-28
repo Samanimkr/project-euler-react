@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 
 import ProblemComponent from './components/ProblemComponent';
 import ConsoleComponent from './components/ConsoleComponent';
-import solutions from './solutions';
 
 class App extends Component {
   render() {
@@ -17,7 +16,6 @@ class App extends Component {
             title='Problem #10 - Summation of primes'
             hasInputField
             fieldText='Enter number'
-            solution={(num) => solutions.Problem10(num)}
           />
 
           <ProblemComponent
@@ -25,7 +23,6 @@ class App extends Component {
             title='Problem #11 - Largest product in a grid'
             hasInputField
             fieldText='Enter number'
-            solution={solutions.Problem10}
           />
         </div>
       </div>

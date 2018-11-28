@@ -28,15 +28,11 @@ class ProblemComponent extends React.Component {
 
     handleSubmit(event){
         event.preventDefault();
-        this.props.isCalculatingAction('TRUE');
-
-        let answer;
-        if (this.props.hasInputField) {
-            answer = this.props.solution(this.state.inputText);
-        } else {
-            answer = this.props.solution();
-        }
-        this.props.logToConsole(answer);
+        this.props.solve({
+            type: 'SOLVE_PROBLEM',
+            problemNum: this.props.problemNum,
+            inputText: this.state.inputText
+        });
     }
 
     render(){
@@ -86,18 +82,13 @@ const styles = {
 
 const mapStateToProps = (state, ownProps) => {
     return {
+        
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        isCalculatingAction: (state) => dispatch({
-            type: `IS_CALCULATING_${state}`
-        }),
-        logToConsole: (msg) => dispatch({
-            type: 'LOG_TO_CONSOLE',
-            msg,
-        })
+        solve: action => dispatch(action),
     }
 }
 

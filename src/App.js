@@ -1,22 +1,15 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import ProblemComponent from './components/ProblemComponent';
 import ConsoleComponent from './components/ConsoleComponent';
 import solutions from './solutions';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      answers: [],
-    };
-  }
-  
   render() {
     return (
       <div className='App'>
-        <ConsoleComponent logs={this.state.answers} />
+        <ConsoleComponent />
         
         <div style={styles.problemsContainer}>
           <ProblemComponent
@@ -24,20 +17,12 @@ class App extends Component {
             title='Problem #10 - Summation of primes'
             hasInputField
             fieldText='Enter number'
-            solution={solutions.Problem10}
-            onAnswer={(answer) => {
-              this.setState({
-                answers: [
-                  ...this.state.answers,
-                  answer,
-                ]
-              });
-            }}
+            solution={(num) => solutions.Problem10(num)}
           />
 
           <ProblemComponent
             problemNum='11'
-            title='Problem #11 - Summation of primes'
+            title='Problem #11 - Largest product in a grid'
             hasInputField
             fieldText='Enter number'
             solution={solutions.Problem10}
@@ -58,4 +43,12 @@ const styles = {
   }
 }
 
-export default App;
+const mapStateToProps = (state, ownProps) => {
+  return {}
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

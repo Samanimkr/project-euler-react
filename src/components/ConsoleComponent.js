@@ -1,15 +1,18 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-// import {
-//     Button,
-//     FormGroup,
-//     FormControl,
-//     ControlLabel,
-//     Form,
-// } from 'react-bootstrap';
+import {
+    ProgressBar
+} from 'react-bootstrap';
 
 class ConsoleComponent extends React.Component {
+    // componentWillReceiveProps(prevProps, newProps) {
+    //     this.props.isCalculating('FALSE');
+    // }
     render(){
+        console.log('isCalculating: ', this.props.isCalculating);
+        console.log('logs: ', this.props.logs);
+
         return (
             <div style={styles.container}>
                 <h3 style={styles.header}>Console</h3>
@@ -19,6 +22,9 @@ class ConsoleComponent extends React.Component {
                         <span style={styles.logText}>&nbsp;{log}</span>
                     </p>
                 )) }
+                { this.props.isCalculating &&
+                    <ProgressBar active now={100} />
+                }
             </div>
         )
     }
@@ -56,4 +62,20 @@ const styles = {
     }
 }
 
-export default ConsoleComponent;
+const mapStateToProps = (state, ownProps) => {
+    return {
+        ...ownProps,
+        isCalculating: state.isCalculating,
+        logs: state.logs
+    }
+  }
+
+  const mapDispatchToProps = (dispatch) => {
+    return {
+        isCalculatingAction: (state) => dispatch({
+            type: `IS_CALCULATING_${state}`
+        }),
+    }
+}
+
+  export default connect(mapStateToProps, mapDispatchToProps)(ConsoleComponent);

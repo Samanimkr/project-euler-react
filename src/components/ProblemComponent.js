@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import {
     Button,
@@ -6,6 +7,7 @@ import {
     FormControl,
     ControlLabel,
     Form,
+    Glyphicon
 } from 'react-bootstrap';
 
 class ProblemComponent extends React.Component {
@@ -13,9 +15,9 @@ class ProblemComponent extends React.Component {
         super(props);
    
         this.state = {
-            inputText: 0
+            inputText: 0,
         }
-
+        this.showLink = false;
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -26,6 +28,7 @@ class ProblemComponent extends React.Component {
 
     handleSubmit(event){
         event.preventDefault();
+        this.props.isCalculatingAction('TRUE');
 
         let answer;
         if (this.props.hasInputField) {
@@ -33,14 +36,21 @@ class ProblemComponent extends React.Component {
         } else {
             answer = this.props.solution();
         }
-
-        this.props.onAnswer(answer);
+        this.props.logToConsole(answer);
     }
 
     render(){
         return (
             <div style={styles.container}>
-                <h3>{this.props.title}</h3>
+                <h3>
+                    {this.props.title}&nbsp;
+                    <Button
+                        href={`https://projecteuler.net/problem=${this.props.problemNum}`}
+                        style={styles.link}
+                        target='_blank'>
+                        <Glyphicon glyph='link' />&nbsp;Link
+                    </Button>
+                </h3>
                 <Form>
                     { this.props.hasInputField && 
                         <FormGroup>
@@ -53,7 +63,7 @@ class ProblemComponent extends React.Component {
                             />
                         </FormGroup>
                     }
-                    <Button onClick={this.handleSubmit}>Log answer in console</Button>
+                    <Button onClick={this.handleSubmit}>Log answer to Console</Button>
                 </Form>
                 
             </div>
@@ -67,7 +77,28 @@ const styles = {
         padding: '20px',
         width: '60%',
         margin: '20px auto',
+    },
+    link: {
+        padding: '2px 6px',
+        borderRadius: '15px',
     }
 }
 
-export default ProblemComponent;
+const mapStateToProps = (state, ownProps) => {
+    return {
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        isCalculatingAction: (state) => dispatch({
+            type: `IS_CALCULATING_${state}`
+        }),
+        logToConsole: (msg) => dispatch({
+            type: 'LOG_TO_CONSOLE',
+            msg,
+        })
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProblemComponent);

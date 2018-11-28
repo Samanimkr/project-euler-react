@@ -1,25 +1,27 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+
+import ProblemComponent from './components/ProblemComponent';
+import solutions from './solutions';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div className='App'>
+        <ProblemComponent
+          problemNum='10'
+          title='Problem #10 - Summation of primes'
+          hasInputField
+          fieldText='Enter number'
+          solution={solutions.Problem10}
+        />
+
+        <ProblemComponent
+          problemNum='11'
+          title='Problem #11 - Summation of primes'
+          hasInputField
+          fieldText='Enter number'
+          solution={solutions.Problem10}
+        />
       </div>
     );
   }

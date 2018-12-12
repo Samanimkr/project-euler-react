@@ -10,18 +10,21 @@ import {
     Glyphicon
 } from 'react-bootstrap';
 
+import ProblemInfoPopup from './ProblemInfoPopup';
+
 class ProblemComponent extends React.Component {
+    component
     constructor(props){
         super(props);
    
         this.state = {
             inputText: 0,
+            popupVisible: false,
         }
         this.showLink = false;
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-
     handleChange(e){
         this.setState({inputText: e.target.value});
     }
@@ -35,18 +38,34 @@ class ProblemComponent extends React.Component {
         });
     }
 
-    render(){
+    renderPopup() {
+        if (this.state.popupVisible) {
+            return (
+                <ProblemInfoPopup
+                    visible={this.state.popupVisible}
+                    problemNum={this.props.problemNum}
+                />
+            );
+        }
+        return;
+    }
+
+    render() {
         return (
             <div style={styles.container}>
                 <h3>
                     {this.props.title}&nbsp;
                     <Button
-                        href={`https://projecteuler.net/problem=${this.props.problemNum}`}
                         style={styles.link}
-                        target='_blank'>
-                        <Glyphicon glyph='link' />&nbsp;Link
+                        target='_blank'
+                        onClick={() => this.setState({popupVisible: !this.state.popupVisible})}
+                    >
+                        <Glyphicon glyph='info-sign' />&nbsp;Info
                     </Button>
                 </h3>
+
+                {this.renderPopup()}
+
                 <Form>
                     { this.props.hasInputField && 
                         <FormGroup>
@@ -59,7 +78,7 @@ class ProblemComponent extends React.Component {
                             />
                         </FormGroup>
                     }
-                    <Button onClick={this.handleSubmit}>Log answer to Console</Button>
+                    <Button onClick={this.handleSubmit}>{ this.props.buttonText? this.props.buttonText: 'Log answer to Console'}</Button>
                 </Form>
                 
             </div>
@@ -69,6 +88,7 @@ class ProblemComponent extends React.Component {
 
 const styles = {
     container: {
+        position: 'relative',
         backgroundColor: '#EFF3F4',
         padding: '20px',
         width: '60%',
@@ -80,11 +100,9 @@ const styles = {
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
-    return {
-        
-    }
-}
+// const mapStateToProps = (state, ownProps) => {
+//     return {}
+// }
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -92,4 +110,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProblemComponent);
+export default connect(null, mapDispatchToProps)(ProblemComponent);

@@ -2,10 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import {
-    ProgressBar
+
 } from 'react-bootstrap';
 
 class ConsoleComponent extends React.Component {
+
     render(){
         return (
             <div style={styles.container}>
@@ -16,9 +17,6 @@ class ConsoleComponent extends React.Component {
                         <span style={styles.logText}>&nbsp;{log}</span>
                     </p>
                 )) }
-                { this.props.isCalculating &&
-                    <ProgressBar active now={100} />
-                }
             </div>
         )
     }
@@ -30,7 +28,7 @@ const styles = {
         padding: '5px',
         width: '30%',
         height: '100%',
-        position: 'absolute',
+        position: 'fixed',
         right: 0,
         top: 0,
     },
@@ -59,14 +57,13 @@ const styles = {
 const mapStateToProps = (state, ownProps) => {
     return {
         ...ownProps,
-        isCalculating: state.isCalculating,
         logs: state.logs
     }
-  }
+}
 
-  const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
     return {
     }
 }
 
-  export default connect(mapStateToProps, mapDispatchToProps)(ConsoleComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(ConsoleComponent);

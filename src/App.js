@@ -21,15 +21,25 @@ class App extends Component {
           <ProblemComponent
             problemNum='11'
             title='Problem #11 - Largest product in a grid'
-            fieldText='Enter number'
             buttonText='Log Largest Product'
           />
 
           <ProblemComponent
             problemNum='12'
             title='Problem #12 - Highly divisible triangular number'
-            fieldText='Enter number'
             buttonText='Log 1st Triangle Number with 500 Divisors'
+          />
+
+          <ProblemComponent
+            problemNum='13'
+            title='Problem #13 - Large sum'
+            buttonText='Find Sum'
+          />
+
+          <ProblemComponent
+            problemNum='14'
+            title='Problem #14 - Longest Collatz sequence'
+            buttonText='Find Sum'
           />
         </div>
       </div>

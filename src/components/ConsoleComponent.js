@@ -28,6 +28,7 @@ const styles = {
         padding: '5px',
         width: '25%',
         height: '100%',
+        overflow: 'scroll',
         position: 'fixed',
         right: 0,
         top: 0,

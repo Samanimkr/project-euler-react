@@ -58,10 +58,16 @@ class ProblemComponent extends React.Component {
                     {this.props.title}&nbsp;
                     <Button
                         style={styles.link}
-                        target='_blank'
                         onClick={() => this.setState({popupVisible: !this.state.popupVisible})}
                     >
                         <Glyphicon glyph='info-sign' />&nbsp;Info
+                    </Button>
+                    <Button
+                        style={styles.link}
+                        target='_blank'
+                        href={`https://projecteuler.net/problem=${this.props.problemNum}`}
+                    >
+                        <Glyphicon glyph='link' />&nbsp;Link
                     </Button>
                 </h3>
 
@@ -92,13 +98,14 @@ const styles = {
         position: 'relative',
         backgroundColor: '#EFF3F4',
         padding: '20px',
-        width: '60%',
+        width: '100%',
         overflow: 'scroll',
         margin: '20px auto',
     },
     link: {
         padding: '2px 6px',
         borderRadius: '15px',
+        margin: '0 5px',
     }
 }
 

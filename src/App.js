@@ -39,9 +39,10 @@ class App extends Component {
 
 const styles = {
   problemsContainer: {
-    width: '70%',
+    width: '75%',
     height: '100%',
     position:  'absolute',
+    padding: '0 50px',
     top: 0,
     left: 0,
   }

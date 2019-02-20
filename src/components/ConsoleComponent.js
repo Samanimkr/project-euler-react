@@ -26,7 +26,7 @@ const styles = {
     container: {
         backgroundColor: '#222f35',
         padding: '5px',
-        width: '30%',
+        width: '25%',
         height: '100%',
         position: 'fixed',
         right: 0,

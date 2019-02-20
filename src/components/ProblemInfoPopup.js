@@ -1,13 +1,9 @@
 import React from 'react';
 import axios from 'axios';
-import * as cheerio from 'cheerio';
+import $ from 'jquery';
 
 import {
     Button,
-    FormGroup,
-    FormControl,
-    ControlLabel,
-    Form,
     Glyphicon
 } from 'react-bootstrap';
 
@@ -31,9 +27,8 @@ class ProblemInfoPopup extends React.Component {
 
         axios.get(url)
         .then(({data})  => {
-            const $ = cheerio.load(data);
-            const problem_content = $('.problem_content').toString();
-            console.log('html: ', problem_content);
+            const elements = $(data.contents);
+            const problem_content = $('.problem_content', elements)[0].innerText;
             this.setState({
                 problemContent: {
                     __html: problem_content
@@ -48,7 +43,16 @@ class ProblemInfoPopup extends React.Component {
     render() {
         return (
             <div style={styles.container}>
-                <div dangerouslySetInnerHTML={this.state.problemContent} />
+                <Button
+                    style={styles.closeButton}
+                    variant='primary'
+                    target='_blank'
+                    onClick={() => this.props.onClose()}
+                >
+                    <Glyphicon glyph='remove-sign' />
+                </Button>
+                { !this.state.problemContent.__html && <p style={styles.text}>Loading...</p> }
+                <div style={styles.text} dangerouslySetInnerHTML={this.state.problemContent} />
             </div>
         )
     }
@@ -61,11 +65,21 @@ const styles = {
         top: 0,
         left: 0,
         width: '100%',
-        height: '100%',
-        overflow: 'scroll',
         padding: '5px',
-        borderRadius: '10px',
+        borderRadius: '5px',
         fontSize: '28px !important',
+        opacity: 0.87,
+    },
+    closeButton: {
+        position: 'absolute',
+        top: '5px',
+        left: '5px',
+        padding: '2px 6px',
+        borderRadius: '15px'
+    },
+    text: {
+        marginTop: '35px',
+        color: '#8F8394',
     },
 }
 

@@ -44,6 +44,7 @@ class ProblemComponent extends React.Component {
                 <ProblemInfoPopup
                     visible={this.state.popupVisible}
                     problemNum={this.props.problemNum}
+                    onClose={() => this.setState({ popupVisible: false,})}
                 />
             );
         }
@@ -92,6 +93,7 @@ const styles = {
         backgroundColor: '#EFF3F4',
         padding: '20px',
         width: '60%',
+        overflow: 'scroll',
         margin: '20px auto',
     },
     link: {

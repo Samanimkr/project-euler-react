@@ -106,7 +106,7 @@ function Problem13() {
         val += data[i];
     }
 
-    return `Problem #10 Answer: ${val}`;
+    return `#13 Answer: ${val}`;
 }
 
 export default Problem13;

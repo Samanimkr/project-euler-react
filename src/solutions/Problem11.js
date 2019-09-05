@@ -103,7 +103,7 @@ function getLargestProduct() {
 
 function Problem11() {
     const answer = getLargestProduct();
-    return `Problem #11 Answer: ${answer}`;
+    return `#11 Answer: ${answer}`;
 }
 
 export default Problem11;

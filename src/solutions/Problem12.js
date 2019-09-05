@@ -20,7 +20,7 @@ function Problem12() {
         console.log('factors: ', factors);
     }
 
-    return `Problem #10 Answer: ${val}`;
+    return `#12 Answer: ${val}`;
 }
 
 export default Problem12;

@@ -27,7 +27,7 @@ function Problem10(input) {
         }
     }
     const answer = primeNums.reduce((sum, num) => (sum += num));
-    return `Problem #10 Answer: ${answer}`;
+    return `#10 Answer: ${answer}`;
 }
 
 export default Problem10;
